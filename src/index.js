@@ -17,18 +17,18 @@ class App extends React.Component {
 
   addToOrder(name, price, bread, isHot) {
     const orderItems = this.state.orderItems;
-    const orderTotal = this.state.orderTotal;
+    const orderTotal = this.state.orderTotal + price;
 
     orderItems.push({
-      name: name,
-      price: price,
-      bread: bread,
-      isHot: isHot
+      name,
+      price,
+      bread,
+      isHot
     });
 
     this.setState({
-      orderItems: orderItems,
-      orderTotal: orderTotal + price
+      orderItems,
+      orderTotal
     });
   }
 
