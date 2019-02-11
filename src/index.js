@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Menu } from "./components/Menu";
-import { OrderSummary } from "./components/Order";
+import { sandwiches, breads } from "./data";
+import { Menu, Order } from "./components";
 import "./styles/main.scss";
 
 class App extends React.Component {
@@ -34,29 +34,33 @@ class App extends React.Component {
 
   removeFromOrder(i, price) {
     const orderItems = this.state.orderItems;
-    const orderTotal = this.state.orderTotal;
-
     orderItems.splice(i, 1);
+    const orderTotal = orderItems.length === 0 ? 0 : this.state.orderTotal - price;
 
     this.setState({
-      orderItems: orderItems,
-      orderTotal: orderItems.length === 0 ? 0 : orderTotal - price
+      orderItems,
+      orderTotal
     });
   }
 
   render() {
     const { orderItems, orderTotal } = this.state;
-    console.log(this.state);
+
     return (
       <React.Fragment>
         <img
           className="logo"
           width="150"
+          alt="Kitchen logo"
           src="http://static1.squarespace.com/static/53cfbe9fe4b0be33a439bc35/t/54044457e4b017ae41b2054d/1539272470942/?format=750w"
         />
         <div className="app">
-          <Menu addToOrder={this.addToOrder} />
-          <OrderSummary
+          <Menu
+            sandwiches={sandwiches}
+            breads={breads}
+            addToOrder={this.addToOrder}
+          />
+          <Order
             items={orderItems}
             total={orderTotal}
             removeFromOrder={this.removeFromOrder}

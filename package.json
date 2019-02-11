@@ -1,7 +1,7 @@
 {
   "name": "kitchen-app",
   "version": "1.0.0",
-  "description": "A simple order app for Sandwhich shop Kitchen in Howden\nhttp://www.eatinmykitchen.co.uk/",
+  "description": "A simple order app for sandwich shop Kitchen in Howden\nhttp://www.eatinmykitchen.co.uk/",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {

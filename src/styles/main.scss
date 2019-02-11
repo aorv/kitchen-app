@@ -70,14 +70,14 @@ small {
     margin: 0;
   }
 
-  &__item {
+  &-item {
     border: 1px solid $stone;
     border-radius: 3px;
     padding: 15px;
     margin-bottom: 10px;
     overflow: hidden;
 
-    &-name {
+    &__name {
       margin-top: 0;
 
       > span {

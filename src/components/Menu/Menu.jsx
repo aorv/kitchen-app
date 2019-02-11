@@ -1,10 +1,9 @@
 import React from "react";
-import { sandwiches, breads } from "../data";
-import { MenuItem } from "./MenuItem";
+import { MenuItem } from "../../components";
 
 export class Menu extends React.Component {
   render() {
-    const { name, price, addToOrder } = this.props;
+    const { sandwiches, breads, addToOrder } = this.props;
 
     return (
       <div className="menu">

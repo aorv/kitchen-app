@@ -1,4 +1,5 @@
 import React from "react";
+import { constants } from "../../constants"
 
 export class MenuItem extends React.Component {
   constructor(props) {
@@ -6,29 +7,34 @@ export class MenuItem extends React.Component {
     this.state = {
       bread: "Standard",
       isHot: false,
-      hotPrice: 0.2,
       total: this.props.price
     };
+
+    this.action = this.action.bind(this);
+    this.changeBread = this.changeBread.bind(this);
+    this.changeHot = this.changeHot.bind(this);
   }
 
-  addBread(event) {
-    let breadName = this.props.breads[event.target.value].name;
-    let breadPrice = this.props.breads[event.target.value].price;
-    let total = this.props.price + breadPrice;
+  changeBread(event) {
+    const { breads, price } = this.props;
+    const bread = breads[event.target.value].name;
+    const breadPrice = breads[event.target.value].price;
+    const total = !this.state.isHot ? price + breadPrice : (price + breadPrice) + constants.hotPrice;
 
     this.setState({
-      bread: breadName,
-      total: !this.state.isHot ? total : total + this.state.hotPrice
+      bread,
+      total
     });
   }
 
-  addHot() {
-    const hotPrice = this.state.hotPrice;
-    let isHot = this.state.isHot ? false : true;
+  changeHot(event) {
+    const hotPrice = constants.hotPrice;
+    const isHot = event.target.checked;
+    const total = isHot ? this.state.total + hotPrice : this.state.total - hotPrice;
 
     this.setState({
-      isHot: isHot,
-      total: isHot ? this.state.total + hotPrice : this.state.total - hotPrice
+      isHot,
+      total
     });
   }
 
@@ -42,7 +48,7 @@ export class MenuItem extends React.Component {
   }
 
   render() {
-    const { name, price, breads } = this.props;
+    const { name, breads } = this.props;
 
     return (
       <div className="menu__item">
@@ -52,7 +58,7 @@ export class MenuItem extends React.Component {
             &pound;{this.state.total.toFixed(2)}
           </span>
         </p>
-        <select value={this.state.value} onChange={this.addBread.bind(this)}>
+        <select value={this.state.value} onChange={this.changeBread}>
           {breads.map((bread, i) => {
             const { name, price } = bread;
             return (
@@ -62,10 +68,10 @@ export class MenuItem extends React.Component {
             );
           })}
         </select>
-        <label onChange={this.addHot.bind(this)}>
+        <label onChange={this.changeHot}>
           <input type="checkbox" /> <small>Hot? (+£0.20)</small>
         </label>
-        <button onClick={this.action.bind(this)}>+ Add</button>
+        <button onClick={this.action}>+ Add</button>
       </div>
     );
   }

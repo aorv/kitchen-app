@@ -1,7 +1,7 @@
 import React from "react";
-import { OrderItem } from "./OrderItem";
+import { OrderItem } from "../../components";
 
-export class OrderSummary extends React.Component {
+export class Order extends React.Component {
   render() {
     const { items, total, removeFromOrder } = this.props;
 
