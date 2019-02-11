@@ -1,0 +1,21 @@
+{
+  "name": "kitchen-app",
+  "version": "1.0.0",
+  "description": "A simple order app for Sandwhich shop Kitchen in Howden\nhttp://www.eatinmykitchen.co.uk/",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "node-sass": "4.11.0",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "react-scripts": "2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+}
