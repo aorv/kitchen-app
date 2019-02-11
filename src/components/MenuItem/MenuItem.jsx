@@ -1,5 +1,5 @@
 import React from "react";
-import { constants } from "../../constants"
+import { hotPrice } from "../../data"
 
 export class MenuItem extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export class MenuItem extends React.Component {
     const { breads, price } = this.props;
     const bread = breads[event.target.value].name;
     const breadPrice = breads[event.target.value].price;
-    const total = !this.state.isHot ? price + breadPrice : (price + breadPrice) + constants.hotPrice;
+    const total = !this.state.isHot ? price + breadPrice : (price + breadPrice) + hotPrice;
 
     this.setState({
       bread,
@@ -28,7 +28,6 @@ export class MenuItem extends React.Component {
   }
 
   changeHot(event) {
-    const hotPrice = constants.hotPrice;
     const isHot = event.target.checked;
     const total = isHot ? this.state.total + hotPrice : this.state.total - hotPrice;
 
