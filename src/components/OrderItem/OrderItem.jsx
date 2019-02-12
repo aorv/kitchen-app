@@ -20,7 +20,7 @@ export class OrderItem extends React.Component {
           <span className="order-item__price">&pound;{price.toFixed(2)}</span>
         </p>
         {isHot && <small className="hot">HOT</small>}
-        <small>{bread !== "Standard" && bread}</small>
+        {bread !== "Standard" && <small>bread</small>}
         <button onClick={this.action}>- Remove</button>
       </li>
     );
