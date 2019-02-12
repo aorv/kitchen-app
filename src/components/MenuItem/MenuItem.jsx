@@ -55,7 +55,7 @@ export class MenuItem extends React.Component {
           {name}
           <span className="menu__item-price">
             &pound;{this.state.total.toFixed(2)}
-          </span>0.20
+          </span>
         </p>
         <select value={this.state.value} onChange={this.changeBread}>
           {breads.map((bread, i) => {
