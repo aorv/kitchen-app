@@ -55,7 +55,7 @@ export class MenuItem extends React.Component {
           {name}
           <span className="menu__item-price">
             &pound;{this.state.total.toFixed(2)}
-          </span>
+          </span>0.20
         </p>
         <select value={this.state.value} onChange={this.changeBread}>
           {breads.map((bread, i) => {
@@ -68,7 +68,7 @@ export class MenuItem extends React.Component {
           })}
         </select>
         <label onChange={this.changeHot}>
-          <input type="checkbox" /> <small>Hot? (+£0.20)</small>
+          <input type="checkbox" /> <small>Hot? (+£{hotPrice})</small>
         </label>
         <button onClick={this.action}>+ Add</button>
       </div>
