@@ -68,7 +68,7 @@ export class MenuItem extends React.Component {
           })}
         </select>
         <label onChange={this.changeHot}>
-          <input type="checkbox" /> <small>Hot? (+£{hotPrice})</small>
+          <input type="checkbox" /> <small>Hot? (+£{hotPrice.toFixed(2)})</small>
         </label>
         <button onClick={this.action}>+ Add</button>
       </div>
