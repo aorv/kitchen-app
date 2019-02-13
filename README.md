@@ -31,7 +31,7 @@ yarn start
 
 ### Built With
 
-* [React](https://reactjs.org/) - Core App
+* [React](https://reactjs.org/) - Core application
 * [Sass](https://sass-lang.com/) - Styling
 * [Surge](https://surge.sh/) - Deployment
 
