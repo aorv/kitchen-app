@@ -1,7 +1,7 @@
 # Kitchen App
-![](https://img.shields.io/github/package-json/v/aorv/kitchen-app.svg?style=flat)
+![](https://img.shields.io/badge/version-v.1.0.0-success.svg)
 
-A simple React order app for sandwich shop Kitchen in Howden, East Yorkshire.
+A simple React order app for sandwich shop Kitchen in Howden, East Yorkshire.\
 [http://kitchen-app.surge.sh](http://kitchen-app.surge.sh)
 
 ### To run locally
