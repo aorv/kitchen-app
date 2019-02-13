@@ -7,7 +7,9 @@ export class OrderItem extends React.Component {
   }
 
   action() {
-    this.props.removeFromOrder(this.props.index, this.props.price);
+    const { removeFromOrder, index } = this.props;
+
+    removeFromOrder(index);
   }
 
   render() {

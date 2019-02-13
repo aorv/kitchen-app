@@ -15,11 +15,13 @@ export class MenuItem extends React.Component {
     this.changeHot = this.changeHot.bind(this);
   }
 
-  changeBread(event) {
+  changeBread(e) {
     const { breads, price } = this.props;
-    const bread = breads[event.target.value].name;
-    const breadPrice = breads[event.target.value].price;
-    const total = !this.state.isHot ? price + breadPrice : (price + breadPrice) + hotPrice;
+    const { isHot } = this.state;
+    const bread = breads[e.target.value].name;
+    const breadPrice = breads[e.target.value].price;
+    const sandwichPrice = price + breadPrice;
+    const total = !isHot ? sandwichPrice : sandwichPrice + hotPrice;
 
     this.setState({
       bread,
@@ -27,9 +29,11 @@ export class MenuItem extends React.Component {
     });
   }
 
-  changeHot(event) {
-    const isHot = event.target.checked;
-    const total = isHot ? this.state.total + hotPrice : this.state.total - hotPrice;
+  changeHot(e) {
+    let { total } = this.state;
+    const isHot = e.target.checked;
+    const hotPriceAlteration = isHot ? hotPrice : -Math.abs(hotPrice);
+    total += hotPriceAlteration;
 
     this.setState({
       isHot,
@@ -38,23 +42,27 @@ export class MenuItem extends React.Component {
   }
 
   action() {
-    this.props.addToOrder(
-      this.props.name,
-      this.state.total,
-      this.state.bread,
-      this.state.isHot
+    const { addToOrder, name } = this.props;
+    const { total, bread, isHot } = this.state;
+
+    addToOrder(
+      name,
+      total,
+      bread,
+      isHot
     );
   }
 
   render() {
     const { name, breads } = this.props;
+    const { total } = this.state;
 
     return (
       <div className="menu__item">
         <p>
           {name}
           <span className="menu__item-price">
-            &pound;{this.state.total.toFixed(2)}
+            &pound;{total.toFixed(2)}
           </span>
         </p>
         <select value={this.state.value} onChange={this.changeBread}>

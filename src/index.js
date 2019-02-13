@@ -16,36 +16,30 @@ class App extends React.Component {
   }
 
   addToOrder(name, price, bread, isHot) {
-    const orderItems = this.state.orderItems;
-    const orderTotal = this.state.orderTotal + price;
-
-    orderItems.push({
-      name,
-      price,
-      bread,
-      isHot
-    });
-
-    this.setState({
-      orderItems,
-      orderTotal
-    });
+    this.setState(prevState => ({
+      orderItems: [...prevState.orderItems, { name, price, bread, isHot }],
+      orderTotal: prevState.orderTotal + price
+    }));
   }
 
-  removeFromOrder(i, price) {
-    const orderItems = this.state.orderItems;
-    orderItems.splice(i, 1);
-    const orderTotal = orderItems.length === 0 ? 0 : this.state.orderTotal - price;
-
-    this.setState({
-      orderItems,
-      orderTotal
+  removeFromOrder(i) {
+    this.setState(prevState => ({
+      orderItems: prevState.orderItems.filter((_, idx) => idx !== i)
+    }));
+    this.setState(prevState => {
+      let orderTotal = 0;
+      prevState.orderItems.forEach(order => {
+        orderTotal += order.price;
+      });
+      return {
+        orderTotal
+      }
     });
   }
 
   render() {
     const { orderItems, orderTotal } = this.state;
-
+    console.log(this.state);
     return (
       <React.Fragment>
         <img
