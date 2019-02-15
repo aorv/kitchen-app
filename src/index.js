@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { categories, breads } from "./data";
-import { Menu, Order } from "./components";
+import { Header, Menu, Order, Footer } from "./components";
 import "./styles/main.scss";
 
 class App extends React.Component {
@@ -42,12 +42,7 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <img
-          className="logo"
-          width="150"
-          alt="Kitchen logo"
-          src="http://static1.squarespace.com/static/53cfbe9fe4b0be33a439bc35/t/54044457e4b017ae41b2054d/1539272470942/?format=750w"
-        />
+        <Header />
         <div className="app">
           <Menu
             categories={categories}
@@ -60,6 +55,7 @@ class App extends React.Component {
             removeFromOrder={this.removeFromOrder}
           />
         </div>
+        <Footer />
       </React.Fragment>
     );
   }

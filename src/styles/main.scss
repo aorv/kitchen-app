@@ -21,6 +21,15 @@ body {
   margin: 3vw;
 }
 
+header {
+  text-align: center;
+}
+
+footer {
+  padding-top: 20px;
+  text-align: center;
+}
+
 h1 {
   margin: 0;
   font-weight: 100;
@@ -40,6 +49,7 @@ small {
 
 .app {
   display: flex;
+  align-items: flex-start;
 }
 
 .logo {
@@ -91,6 +101,8 @@ small {
 
 .order {
   @include card();
+  position: sticky;
+  top: 10px;
   flex: 1;
 
   &__items {
