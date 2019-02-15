@@ -28,7 +28,7 @@ h1 {
 }
 
 h2 {
-  margin-top: 25px;
+  margin: 25px 0 20px;
   font-weight: 100;
   border-bottom: 1px solid $stone;
   padding-bottom: 10px;
@@ -121,6 +121,12 @@ small {
 
   &__total {
     font-weight: 700;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: $ash;
+    border: 1px solid $stone;
+    border-radius: 3px;
+
     > span {
       float: right;
     }
@@ -131,6 +137,6 @@ small {
   background-color: $coral;
   color: white;
   border-radius: 3px;
-  padding: 2px;
+  padding: 2px 3px;
   margin-right: 10px;
 }

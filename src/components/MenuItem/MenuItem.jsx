@@ -4,10 +4,12 @@ import { hotPrice } from "../../data"
 export class MenuItem extends React.Component {
   constructor(props) {
     super(props);
+
+    const { price, canBeHeated } = this.props;
     this.state = {
       bread: "Standard",
-      isHot: false,
-      total: this.props.price
+      isHot: !canBeHeated,
+      total: price
     };
 
     this.action = this.action.bind(this);
@@ -54,7 +56,7 @@ export class MenuItem extends React.Component {
   }
 
   render() {
-    const { name, breads } = this.props;
+    const { name, breads, canBeHeated } = this.props;
     const { total } = this.state;
 
     return (
@@ -75,9 +77,11 @@ export class MenuItem extends React.Component {
             );
           })}
         </select>
-        <label onChange={this.changeHot}>
-          <input type="checkbox" /> <small>Hot? (+£{hotPrice.toFixed(2)})</small>
-        </label>
+        {canBeHeated &&
+          <label onChange={this.changeHot}>
+            <input type="checkbox" /> <small>Hot? (+£{hotPrice.toFixed(2)})</small>
+          </label>
+        }
         <button onClick={this.action}>+ Add</button>
       </li>
     );
