@@ -4,7 +4,7 @@ const prices = {
   specials: 3.75
 };
 
-export const sandwiches = [
+export const categories = [
   {
     title: "Kitchen Classics",
     items: [

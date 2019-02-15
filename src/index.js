@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { sandwiches, breads } from "./data";
+import { categories, breads } from "./data";
 import { Menu, Order } from "./components";
 import "./styles/main.scss";
 
@@ -39,7 +39,7 @@ class App extends React.Component {
 
   render() {
     const { orderItems, orderTotal } = this.state;
-    console.log(sandwiches);
+
     return (
       <React.Fragment>
         <img
@@ -50,7 +50,7 @@ class App extends React.Component {
         />
         <div className="app">
           <Menu
-            sandwiches={sandwiches}
+            categories={categories}
             breads={breads}
             addToOrder={this.addToOrder}
           />

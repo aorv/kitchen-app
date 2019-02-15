@@ -1,3 +1,3 @@
 export const hotPrice = 0.20;
-export { sandwiches } from "./sandwiches";
+export { categories } from "./categories";
 export { breads } from "./breads";

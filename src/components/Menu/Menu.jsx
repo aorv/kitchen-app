@@ -3,12 +3,12 @@ import { MenuCategory } from "../../components";
 
 export class Menu extends React.Component {
   render() {
-    const { sandwiches, breads, addToOrder } = this.props;
+    const { categories, breads, addToOrder } = this.props;
 
     return (
       <div className="menu">
         <h1>Menu</h1>
-        {sandwiches.map((category, i) => {
+        {categories.map((category, i) => {
           const { title, items } = category;
 
           return (
