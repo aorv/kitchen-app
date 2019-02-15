@@ -39,7 +39,7 @@ class App extends React.Component {
 
   render() {
     const { orderItems, orderTotal } = this.state;
-    console.log(this.state);
+    console.log(sandwiches);
     return (
       <React.Fragment>
         <img

@@ -58,10 +58,10 @@ export class MenuItem extends React.Component {
     const { total } = this.state;
 
     return (
-      <div className="menu__item">
+      <li className="menu-item">
         <p>
           {name}
-          <span className="menu__item-price">
+          <span className="menu-item__price">
             &pound;{total.toFixed(2)}
           </span>
         </p>
@@ -79,7 +79,7 @@ export class MenuItem extends React.Component {
           <input type="checkbox" /> <small>Hot? (+£{hotPrice.toFixed(2)})</small>
         </label>
         <button onClick={this.action}>+ Add</button>
-      </div>
+      </li>
     );
   }
 }

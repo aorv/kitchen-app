@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuItem } from "../../components";
+import { MenuCategory } from "../../components";
 
 export class Menu extends React.Component {
   render() {
@@ -8,15 +8,16 @@ export class Menu extends React.Component {
     return (
       <div className="menu">
         <h1>Menu</h1>
-        {sandwiches.map((sandwich, i) => {
-          const { name, price } = sandwich;
+        {sandwiches.map((category, i) => {
+          const { title, items } = category;
+
           return (
-            <MenuItem
+            <MenuCategory
               key={i}
-              name={name}
-              price={price}
-              addToOrder={addToOrder}
+              title={title}
+              items={items}
               breads={breads}
+              addToOrder={addToOrder}
             />
           );
         })}
