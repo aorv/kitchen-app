@@ -8,6 +8,7 @@ export class Order extends React.Component {
     return (
       <div className="order">
         <h1>Order</h1>
+        <h2>Items({items.length})</h2>
         <ul className="order__items">
           {items.map((item, i) => {
             const { name, price, bread, isHot } = item;
@@ -25,7 +26,7 @@ export class Order extends React.Component {
           })}
         </ul>
         <p className="order__total">
-          TOTAL({items.length}) <span>&pound;{total.toFixed(2)}</span>
+          TOTAL <span>&pound;{total.toFixed(2)}</span>
         </p>
       </div>
     );
