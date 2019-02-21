@@ -19,7 +19,7 @@ export const categories = [
         canBeHeated: true
       },
       {
-        name: "Roast ham, chedder & picalilli",
+        name: "Roast ham, cheddar & picalilli",
         price: prices.classics,
         canBeHeated: true
       },
@@ -34,12 +34,12 @@ export const categories = [
         canBeHeated: true
       },
       {
-        name: "Praws with lemon mayo",
+        name: "Prawns with lemon mayo",
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "Roast chicken & smoked bacon ceaser",
+        name: "Roast chicken & smoked bacon caesar",
         price: prices.classics,
         canBeHeated: true
       },
@@ -84,7 +84,7 @@ export const categories = [
         canBeHeated: false
       },
       {
-        name: "Roast ham, chedder & chutney",
+        name: "Roast ham, cheddar & chutney",
         price: prices.hots,
         canBeHeated: false
       },
@@ -94,17 +94,17 @@ export const categories = [
         canBeHeated: false
       },
       {
-        name: "Arthur Haigh Sausage, smoked chedder & onion marmalade",
+        name: "Arthur Haigh Sausage, smoked cheddar & onion marmalade",
         price: prices.hots,
         canBeHeated: false
       },
       {
-        name: "Mozzerlla, salami, pesto & sunblush tomato",
+        name: "Mozzarella, salami, pesto & sunblush tomato",
         price: prices.hots,
         canBeHeated: false
       },
       {
-        name: "Roast ham, chilli jam & mature chedder",
+        name: "Roast ham, chilli jam & mature cheddar",
         price: prices.hots,
         canBeHeated: false
       },
@@ -139,7 +139,7 @@ export const categories = [
         canBeHeated: true
       },
       {
-        name: "Arthur Haigh Sausage, smoked chedder & mustard",
+        name: "Arthur Haigh Sausage, smoked cheddar & mustard",
         price: prices.specials,
         canBeHeated: true
       },
@@ -174,7 +174,7 @@ export const categories = [
         canBeHeated: true
       },
       {
-        name: "Mozzerlla, pesto, sunblush tomatoes & salami",
+        name: "Mozzarella, pesto, sunblush tomatoes & salami",
         price: prices.specials,
         canBeHeated: true
       }
