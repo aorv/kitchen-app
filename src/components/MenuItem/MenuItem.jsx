@@ -18,12 +18,12 @@ export class MenuItem extends React.Component {
   }
 
   changeBread(e) {
-    const { breads, price } = this.props;
+    const { breads, price, canBeHeated } = this.props;
     const { isHot } = this.state;
     const bread = breads[e.target.value].name;
     const breadPrice = breads[e.target.value].price;
     const sandwichPrice = price + breadPrice;
-    const total = !isHot ? sandwichPrice : sandwichPrice + hotPrice;
+    const total = !isHot || !canBeHeated ? sandwichPrice : sandwichPrice + hotPrice;
 
     this.setState({
       bread,
