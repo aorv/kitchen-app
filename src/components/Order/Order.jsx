@@ -1,5 +1,5 @@
 import React from "react";
-import { OrderItem } from "../../components";
+import { OrderItem, Price } from "../../components";
 
 export class Order extends React.Component {
   render() {
@@ -26,7 +26,7 @@ export class Order extends React.Component {
           })}
         </ul>
         <p className="order__total">
-          TOTAL <span>&pound;{total.toFixed(2)}</span>
+          TOTAL <span><Price value={total} /></span>
         </p>
       </div>
     );

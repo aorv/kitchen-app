@@ -1,4 +1,5 @@
 import React from "react";
+import { Price } from "../../components";
 
 export class OrderItem extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ export class OrderItem extends React.Component {
       <li className="order-item">
         <p className="order-item__name">
           {name}
-          <span className="order-item__price">&pound;{price.toFixed(2)}</span>
+          <span className="order-item__price"><Price value={price} /></span>
         </p>
         {isHot && <small className="hot">HOT</small>}
         {bread !== "Standard" && <small>{bread}</small>}

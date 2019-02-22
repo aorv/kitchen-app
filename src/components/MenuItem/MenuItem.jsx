@@ -1,5 +1,6 @@
 import React from "react";
 import { hotPrice } from "../../data"
+import { Price } from "../../components";
 
 export class MenuItem extends React.Component {
   constructor(props) {
@@ -70,6 +71,7 @@ export class MenuItem extends React.Component {
         <select value={this.state.value} onChange={this.changeBread}>
           {breads.map((bread, i) => {
             const { name, price } = bread;
+
             return (
               <option key={i} value={i}>
                 {name} (+&pound;{price.toFixed(2)})
@@ -79,7 +81,7 @@ export class MenuItem extends React.Component {
         </select>
         {canBeHeated &&
           <label onChange={this.changeHot}>
-            <input type="checkbox" /> <small>Hot? (+£{hotPrice.toFixed(2)})</small>
+            <input type="checkbox" /> <small>Hot? (+<Price value={hotPrice} />)</small>
           </label>
         }
         <button onClick={this.action}>+ Add</button>
