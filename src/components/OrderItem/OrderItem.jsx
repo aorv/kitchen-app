@@ -8,9 +8,9 @@ export class OrderItem extends React.Component {
   }
 
   action() {
-    const { removeFromOrder, index } = this.props;
+    const { removeFromOrder, id } = this.props;
 
-    removeFromOrder(index);
+    removeFromOrder(id);
   }
 
   render() {

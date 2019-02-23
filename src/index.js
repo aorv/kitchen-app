@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { categories, breads } from "./data";
 import { Header, Menu, Order, Footer } from "./components";
+import firebase from './firebase.js';
 import "./styles/main.scss";
 
 class App extends React.Component {
@@ -15,26 +16,40 @@ class App extends React.Component {
     this.removeFromOrder = this.removeFromOrder.bind(this);
   }
 
-  addToOrder(name, price, bread, isHot) {
-    this.setState(prevState => ({
-      orderItems: [...prevState.orderItems, { name, price, bread, isHot }],
-      orderTotal: prevState.orderTotal + price
-    }));
+  componentDidMount() {
+    const orderRef = firebase.database().ref('order');
+    orderRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      let orderTotal = 0;
+
+      for (let item in items) {
+        newState.push({
+          id: item,
+          bread: items[item].bread,
+          isHot: items[item].isHot,
+          name: items[item].name,
+          price: items[item].price
+        });
+        orderTotal += items[item].price;
+      }
+
+      this.setState({
+        orderItems: newState,
+        orderTotal: orderTotal
+      });
+    });
   }
 
-  removeFromOrder(i) {
-    this.setState(prevState => ({
-      orderItems: prevState.orderItems.filter((_, idx) => idx !== i)
-    }));
-    this.setState(prevState => {
-      let orderTotal = 0;
-      prevState.orderItems.forEach(order => {
-        orderTotal += order.price;
-      });
-      return {
-        orderTotal
-      }
-    });
+  addToOrder(name, price, bread, isHot) {
+    const orderRef = firebase.database().ref('order');
+    const newItem = { name, price, bread, isHot };
+    orderRef.push(newItem);
+  }
+
+  removeFromOrder(id) {
+    const itemRef = firebase.database().ref(`/order/${id}`);
+    itemRef.remove();
   }
 
   render() {

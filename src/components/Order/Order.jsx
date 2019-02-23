@@ -11,11 +11,11 @@ export class Order extends React.Component {
         <h2>Items({items.length})</h2>
         <ul className="order__items">
           {items.map((item, i) => {
-            const { name, price, bread, isHot } = item;
+            const { id, name, price, bread, isHot } = item;
             return (
               <OrderItem
-                key={i}
-                index={i}
+                key={id}
+                id={id}
                 name={name}
                 price={price}
                 bread={bread}
