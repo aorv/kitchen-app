@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export const Price = ({value}) => {
+export const Price = ({ value }) => {
   const price = value.toFixed(2);
 
   return (
@@ -8,4 +8,4 @@ export const Price = ({value}) => {
       &pound;{price}
     </React.Fragment>
   );
-}
+};

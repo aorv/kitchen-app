@@ -23,15 +23,16 @@ class App extends React.Component {
       const orderItems = [];
       let orderTotal = 0;
 
-      Object.keys(items).forEach((key) => {
+      Object.keys(items).forEach((item) => {
+        const { name, price, bread, isHot } = items[item];
         orderItems.push({
-          id: key,
-          bread: items[key].bread,
-          isHot: items[key].isHot,
-          name: items[key].name,
-          price: items[key].price
+          id: item,
+          name,
+          price,
+          bread,
+          isHot
         });
-        orderTotal += items[key].price;
+        orderTotal += price;
       });
 
       this.setState({
@@ -42,19 +43,20 @@ class App extends React.Component {
   }
 
   addToOrder(name, price, bread, isHot) {
-    const orderRef = firebase.database().ref('order');
-    const newItem = { name, price, bread, isHot };
-    orderRef.push(newItem);
+    firebase.database().ref('order').push({
+      name,
+      price,
+      bread,
+      isHot
+    });
   }
 
   removeFromOrder(id) {
-    const itemRef = firebase.database().ref(`/order/${id}`);
-    itemRef.remove();
+    firebase.database().ref(`order/${id}`).remove();
   }
 
-  refresh() {
-    const orderRef = firebase.database().ref('/order');
-    orderRef.remove();
+  clearOrder() {
+    firebase.database().ref('order').remove();
   }
 
   render() {
@@ -75,7 +77,7 @@ class App extends React.Component {
             removeFromOrder={this.removeFromOrder}
           />
         </div>
-        <button type="button" onClick={this.refresh}>start over</button>
+        <button type="button" onClick={this.clearOrder}>start over</button>
         <Footer />
       </React.Fragment>
     );

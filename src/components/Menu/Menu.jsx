@@ -1,5 +1,5 @@
-import React from "react";
-import { MenuCategory } from "../../components";
+import React from 'react';
+import { MenuCategory } from '..';
 
 export class Menu extends React.Component {
   render() {

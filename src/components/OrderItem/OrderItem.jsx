@@ -1,5 +1,5 @@
 import React from 'react';
-import { Price } from '../../components';
+import { Price } from '..';
 
 export class OrderItem extends React.Component {
   constructor(props) {
@@ -9,7 +9,6 @@ export class OrderItem extends React.Component {
 
   action() {
     const { id, removeFromOrder } = this.props;
-
     removeFromOrder(id);
   }
 
