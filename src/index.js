@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { categories, breads } from "./data";
-import { Header, Menu, Order, Footer } from "./components";
-import firebase from './firebase.js';
-import "./styles/main.scss";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { categories, breads } from './data';
+import { Header, Menu, Order, Footer } from './components';
+import firebase from './firebase';
+import './styles/main.scss';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,24 +19,24 @@ class App extends React.Component {
   componentDidMount() {
     const orderRef = firebase.database().ref('order');
     orderRef.on('value', (snapshot) => {
-      let items = snapshot.val();
-      let newState = [];
+      const items = snapshot.exists() ? snapshot.val() : {};
+      const orderItems = [];
       let orderTotal = 0;
 
-      for (let item in items) {
-        newState.push({
-          id: item,
-          bread: items[item].bread,
-          isHot: items[item].isHot,
-          name: items[item].name,
-          price: items[item].price
+      Object.keys(items).forEach((key) => {
+        orderItems.push({
+          id: key,
+          bread: items[key].bread,
+          isHot: items[key].isHot,
+          name: items[key].name,
+          price: items[key].price
         });
-        orderTotal += items[item].price;
-      }
+        orderTotal += items[key].price;
+      });
 
       this.setState({
-        orderItems: newState,
-        orderTotal: orderTotal
+        orderItems,
+        orderTotal
       });
     });
   }
@@ -50,6 +50,11 @@ class App extends React.Component {
   removeFromOrder(id) {
     const itemRef = firebase.database().ref(`/order/${id}`);
     itemRef.remove();
+  }
+
+  refresh() {
+    const orderRef = firebase.database().ref('/order');
+    orderRef.remove();
   }
 
   render() {
@@ -70,11 +75,12 @@ class App extends React.Component {
             removeFromOrder={this.removeFromOrder}
           />
         </div>
+        <button type="button" onClick={this.refresh}>start over</button>
         <Footer />
       </React.Fragment>
     );
   }
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);

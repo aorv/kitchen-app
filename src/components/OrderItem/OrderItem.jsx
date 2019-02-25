@@ -1,14 +1,14 @@
-import React from "react";
-import { Price } from "../../components";
+import React from 'react';
+import { Price } from '../../components';
 
 export class OrderItem extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.action = this.action.bind(this);
   }
 
   action() {
-    const { removeFromOrder, id } = this.props;
+    const { id, removeFromOrder } = this.props;
 
     removeFromOrder(id);
   }
@@ -23,8 +23,8 @@ export class OrderItem extends React.Component {
           <span className="order-item__price"><Price value={price} /></span>
         </p>
         {isHot && <small className="hot">HOT</small>}
-        {bread !== "Standard" && <small>{bread}</small>}
-        <button onClick={this.action}>- Remove</button>
+        {bread !== 'Standard' && <small>{bread}</small>}
+        <button type="button" onClick={this.action}>- Remove</button>
       </li>
     );
   }
