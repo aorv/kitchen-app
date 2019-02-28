@@ -77,7 +77,6 @@ class App extends React.Component {
             removeFromOrder={this.removeFromOrder}
           />
         </div>
-        <button type="button" onClick={this.clearOrder}>start over</button>
         <Footer />
       </React.Fragment>
     );
