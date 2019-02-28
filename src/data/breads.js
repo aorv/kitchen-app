@@ -1,19 +1,19 @@
 const price = 0.25;
 export const breads = [
   {
-    name: "Standard",
+    name: 'Standard',
     price: 0.0
   },
   {
-    name: "Garlic & Cheese",
+    name: 'Garlic & Cheese',
     price
   },
   {
-    name: "Tiger",
+    name: 'Tiger',
     price
   },
   {
-    name: "Olive",
+    name: 'Olive',
     price
   }
 ];

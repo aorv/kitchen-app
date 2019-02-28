@@ -1,1 +1,1 @@
-export { MenuCategory } from "./MenuCategory";
+export { MenuCategory } from './MenuCategory';

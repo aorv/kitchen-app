@@ -1,5 +1,5 @@
-import React from "react";
-import { OrderItem, Price } from "../../components";
+import React from 'react';
+import { OrderItem, Price } from '..';
 
 export class Order extends React.Component {
   render() {
@@ -10,12 +10,13 @@ export class Order extends React.Component {
         <h1>Order</h1>
         <h2>Items({items.length})</h2>
         <ul className="order__items">
-          {items.map((item, i) => {
-            const { name, price, bread, isHot } = item;
+          {items.map((item) => {
+            const { id, name, price, bread, isHot } = item;
+
             return (
               <OrderItem
-                key={i}
-                index={i}
+                key={id}
+                id={id}
                 name={name}
                 price={price}
                 bread={bread}

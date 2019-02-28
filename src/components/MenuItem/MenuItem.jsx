@@ -1,6 +1,6 @@
-import React from "react";
-import { hotPrice } from "../../data"
-import { Price } from "../../components";
+import React from 'react';
+import { hotPrice } from '../../data';
+import { Price } from '..';
 
 export class MenuItem extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export class MenuItem extends React.Component {
 
     const { price, canBeHeated } = this.props;
     this.state = {
-      bread: "Standard",
+      bread: 'Standard',
       isHot: !canBeHeated,
       total: price
     };
@@ -58,7 +58,7 @@ export class MenuItem extends React.Component {
 
   render() {
     const { name, breads, canBeHeated } = this.props;
-    const { total } = this.state;
+    const { value, total } = this.state;
 
     return (
       <li className="menu-item">
@@ -68,7 +68,7 @@ export class MenuItem extends React.Component {
             &pound;{total.toFixed(2)}
           </span>
         </p>
-        <select value={this.state.value} onChange={this.changeBread}>
+        <select value={value} onChange={this.changeBread}>
           {breads.map((bread, i) => {
             const { name, price } = bread;
 
@@ -79,12 +79,12 @@ export class MenuItem extends React.Component {
             );
           })}
         </select>
-        {canBeHeated &&
+        {canBeHeated && (
           <label onChange={this.changeHot}>
             <input type="checkbox" /> <small>Hot? (+<Price value={hotPrice} />)</small>
           </label>
-        }
-        <button onClick={this.action}>+ Add</button>
+        )}
+        <button type="button" onClick={this.action}>+ Add</button>
       </li>
     );
   }

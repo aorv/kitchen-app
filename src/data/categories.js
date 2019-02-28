@@ -6,20 +6,20 @@ const prices = {
 
 export const categories = [
   {
-    title: "Kitchen Classics",
+    title: 'Kitchen Classics',
     items: [
       {
-        name: "Roast ham ploughmans",
+        name: 'Roast ham ploughmans',
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "Roast ham salad",
+        name: 'Roast ham salad',
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "Roast ham, cheddar & picalilli",
+        name: 'Roast ham, cheddar & picalilli',
         price: prices.classics,
         canBeHeated: true
       },
@@ -29,152 +29,152 @@ export const categories = [
         canBeHeated: true
       },
       {
-        name: "BLT",
+        name: 'BLT',
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "Prawns with lemon mayo",
+        name: 'Prawns with lemon mayo',
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "Roast chicken & smoked bacon caesar",
+        name: 'Roast chicken & smoked bacon caesar',
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "Homemade coronation chicken & mango chutney",
+        name: 'Homemade coronation chicken & mango chutney',
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "Roast chicken & smoked bacon club",
+        name: 'Roast chicken & smoked bacon club',
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "Ham, cheese & homemade coleslaw",
+        name: 'Ham, cheese & homemade coleslaw',
         price: prices.classics,
         canBeHeated: true
       },
       {
-        name: "French brie & cranberry with bacon",
+        name: 'French brie & cranberry with bacon',
         price: prices.classics,
         canBeHeated: true
       }
     ]
   },
   {
-    title: "Hot Sarnies",
+    title: 'Hot Sarnies',
     items: [
       {
-        name: "Bacon",
+        name: 'Bacon',
         price: 3.00,
         canBeHeated: false
       },
       {
-        name: "Bacon & sausage",
+        name: 'Bacon & sausage',
         price: 3.50,
         canBeHeated: false
       },
       {
-        name: "Bacon, sausage & black pudding",
+        name: 'Bacon, sausage & black pudding',
         price: prices.hots,
         canBeHeated: false
       },
       {
-        name: "Roast ham, cheddar & chutney",
+        name: 'Roast ham, cheddar & chutney',
         price: prices.hots,
         canBeHeated: false
       },
       {
-        name: "Smoked bacon, brie & cranberry",
+        name: 'Smoked bacon, brie & cranberry',
         price: prices.hots,
         canBeHeated: false
       },
       {
-        name: "Arthur Haigh Sausage, smoked cheddar & onion marmalade",
+        name: 'Arthur Haigh Sausage, smoked cheddar & onion marmalade',
         price: prices.hots,
         canBeHeated: false
       },
       {
-        name: "Mozzarella, salami, pesto & sunblush tomato",
+        name: 'Mozzarella, salami, pesto & sunblush tomato',
         price: prices.hots,
         canBeHeated: false
       },
       {
-        name: "Roast ham, chilli jam & mature cheddar",
+        name: 'Roast ham, chilli jam & mature cheddar',
         price: prices.hots,
         canBeHeated: false
       },
       {
-        name: "Goats cheese, chorizo & tomato chutney",
+        name: 'Goats cheese, chorizo & tomato chutney',
         price: prices.hots,
         canBeHeated: false
       }
     ]
   },
   {
-    title: "Something Special",
+    title: 'Something Special',
     items: [
       {
-        name: "Basil pesto chicken & sunblushed tomatoes",
+        name: 'Basil pesto chicken & sunblushed tomatoes',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Roast beef, balsamic onions & horseradish mayo",
+        name: 'Roast beef, balsamic onions & horseradish mayo',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Roast beef, Yorkshire Blue & onion marmalade",
+        name: 'Roast beef, Yorkshire Blue & onion marmalade',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Piri piri chicken & sweet chilli jam",
+        name: 'Piri piri chicken & sweet chilli jam',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Arthur Haigh Sausage, smoked cheddar & mustard",
+        name: 'Arthur Haigh Sausage, smoked cheddar & mustard',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Goats cheese, sunblush tomatoes & tomato chutney",
+        name: 'Goats cheese, sunblush tomatoes & tomato chutney',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Roast ham, cream cheese & sweet chilli jam",
+        name: 'Roast ham, cream cheese & sweet chilli jam',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Homemade hummus, salami & sunblush tomatoes",
+        name: 'Homemade hummus, salami & sunblush tomatoes',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Fresh salmon, cream cheese & mayo",
+        name: 'Fresh salmon, cream cheese & mayo',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Fresh salmon & prawns in lemon mayo",
+        name: 'Fresh salmon & prawns in lemon mayo',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "French brie & parma ham with apple & peach chutney",
+        name: 'French brie & parma ham with apple & peach chutney',
         price: prices.specials,
         canBeHeated: true
       },
       {
-        name: "Mozzarella, pesto, sunblush tomatoes & salami",
+        name: 'Mozzarella, pesto, sunblush tomatoes & salami',
         price: prices.specials,
         canBeHeated: true
       }

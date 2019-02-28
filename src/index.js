@@ -1,8 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { categories, breads } from "./data";
-import { Header, Menu, Order, Footer } from "./components";
-import "./styles/main.scss";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { categories, breads } from './data';
+import { Header, Menu, Order, Footer } from './components';
+import firebase from './firebase';
+import './styles/main.scss';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,26 +16,47 @@ class App extends React.Component {
     this.removeFromOrder = this.removeFromOrder.bind(this);
   }
 
-  addToOrder(name, price, bread, isHot) {
-    this.setState(prevState => ({
-      orderItems: [...prevState.orderItems, { name, price, bread, isHot }],
-      orderTotal: prevState.orderTotal + price
-    }));
+  componentDidMount() {
+    const orderRef = firebase.database().ref('order');
+    orderRef.on('value', (snapshot) => {
+      const items = snapshot.exists() ? snapshot.val() : {};
+      const orderItems = [];
+      let orderTotal = 0;
+
+      Object.keys(items).forEach((item) => {
+        const { name, price, bread, isHot } = items[item];
+        orderItems.push({
+          id: item,
+          name,
+          price,
+          bread,
+          isHot
+        });
+        orderTotal += price;
+      });
+
+      this.setState({
+        orderItems,
+        orderTotal
+      });
+    });
   }
 
-  removeFromOrder(i) {
-    this.setState(prevState => ({
-      orderItems: prevState.orderItems.filter((_, idx) => idx !== i)
-    }));
-    this.setState(prevState => {
-      let orderTotal = 0;
-      prevState.orderItems.forEach(order => {
-        orderTotal += order.price;
-      });
-      return {
-        orderTotal
-      }
+  addToOrder(name, price, bread, isHot) {
+    firebase.database().ref('order').push({
+      name,
+      price,
+      bread,
+      isHot
     });
+  }
+
+  removeFromOrder(id) {
+    firebase.database().ref(`order/${id}`).remove();
+  }
+
+  clearOrder() {
+    firebase.database().ref('order').remove();
   }
 
   render() {
@@ -61,5 +83,5 @@ class App extends React.Component {
   }
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);
