@@ -11,7 +11,7 @@ A simple React order app for sandwich shop Kitchen in Howden, East Yorkshire.\
 git clone https://github.com/aorv/kitchen-app.git
 ```
 
-**Create `.env` file with Firebase credencials**
+**Create `.env` file with Firebase credentials**
 ```
 cd kitchen-app
 touch .env
