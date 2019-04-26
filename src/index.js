@@ -24,13 +24,14 @@ class App extends React.Component {
       let orderTotal = 0;
 
       Object.keys(items).forEach((item) => {
-        const { name, price, bread, isHot } = items[item];
+        const { name, price, bread, isHot, orderOwner } = items[item];
         orderItems.push({
           id: item,
           name,
           price,
           bread,
-          isHot
+          isHot,
+          orderOwner
         });
         orderTotal += price;
       });
@@ -42,12 +43,13 @@ class App extends React.Component {
     });
   }
 
-  addToOrder(name, price, bread, isHot) {
+  addToOrder(name, price, bread, isHot, orderOwner) {
     firebase.database().ref('order').push({
       name,
       price,
       bread,
-      isHot
+      isHot,
+      orderOwner
     });
   }
 

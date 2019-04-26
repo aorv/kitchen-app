@@ -1,19 +1,31 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Switch from '@material-ui/core/Switch';
 import { hotPrice } from '../../data';
-import { Price } from '..';
+import { Price, OrderConfirmation } from '..';
 
 export class MenuItem extends React.Component {
   constructor(props) {
     super(props);
 
-    const { price, canBeHeated } = this.props;
+    const { name, price, canBeHeated } = this.props;
     this.state = {
+      name,
       bread: 'Standard',
       isHot: !canBeHeated,
-      total: price
+      total: price,
+      modalOpen: false,
+      owner: ''
     };
 
     this.action = this.action.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.addOrderOwner = this.addOrderOwner.bind(this);
     this.changeBread = this.changeBread.bind(this);
     this.changeHot = this.changeHot.bind(this);
   }
@@ -46,19 +58,33 @@ export class MenuItem extends React.Component {
 
   action() {
     const { addToOrder, name } = this.props;
-    const { total, bread, isHot } = this.state;
+    const { total, bread, isHot, owner } = this.state;
 
     addToOrder(
       name,
       total,
       bread,
-      isHot
+      isHot,
+      owner
     );
+  }
+
+  handleClick() {
+    this.setState({ modalOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalOpen: false });
+  }
+
+  addOrderOwner(owner) {
+    this.setState({ owner });
   }
 
   render() {
     const { name, breads, canBeHeated } = this.props;
-    const { value, total } = this.state;
+    const { value, total, modalOpen } = this.state;
+    const HotSwitch = <small>Hot? (+<Price value={hotPrice} />)</small>;
 
     return (
       <li className="menu-item">
@@ -68,23 +94,44 @@ export class MenuItem extends React.Component {
             &pound;{total.toFixed(2)}
           </span>
         </p>
-        <select value={value} onChange={this.changeBread}>
-          {breads.map((bread, i) => {
-            const { name, price } = bread;
+        <div className="row">
+          <FormControl>
+            <InputLabel shrink>Bread</InputLabel>
+            <Select
+              native
+              value={value}
+              onChange={this.changeBread}
+            >
+              {breads.map((bread, i) => {
+                const { name, price } = bread;
 
-            return (
-              <option key={i} value={i}>
-                {name} (+&pound;{price.toFixed(2)})
-              </option>
-            );
-          })}
-        </select>
-        {canBeHeated && (
-          <label onChange={this.changeHot}>
-            <input type="checkbox" /> <small>Hot? (+<Price value={hotPrice} />)</small>
-          </label>
-        )}
-        <button type="button" onClick={this.action}>+ Add</button>
+                return (
+                  <option key={i} value={i}>
+                    {name} (+&pound;{price.toFixed(2)})
+                  </option>
+                );
+              })}
+            </Select>
+          </FormControl>
+          {canBeHeated && (
+            <FormControlLabel
+              control={(
+                <Switch
+                  onChange={this.changeHot}
+                />
+              )}
+              label={HotSwitch}
+            />
+          )}
+          <Button size="small" variant="contained" color="primary" onClick={this.handleClick}>+ Add</Button>
+          <OrderConfirmation
+            addOrderOwner={this.addOrderOwner}
+            sandwich={this.state}
+            addToOrder={this.action}
+            closeModal={this.closeModal}
+            open={modalOpen}
+          />
+        </div>
       </li>
     );
   }

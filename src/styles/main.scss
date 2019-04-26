@@ -47,6 +47,12 @@ small {
   color: $pavement;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .app {
   display: flex;
   align-items: flex-start;
@@ -114,9 +120,16 @@ small {
   &-item {
     border: 1px solid $stone;
     border-radius: 3px;
-    padding: 15px;
+    padding: 15px 15px 5px;
     margin-bottom: 10px;
     overflow: hidden;
+    color: black;
+
+    .order__items--modal & {
+      min-width: 550px;
+      border: 0;
+      padding:0;
+    }
 
     &__name {
       margin-top: 0;
@@ -126,8 +139,22 @@ small {
       }
     }
 
+    &__owner {
+      color: lighten(black, 50%);
+      margin-top: 4px;
+      margin-top: -15px;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 10px 15px;
+      background-color: $ash;
+      float: left;
+      width: calc(100% + 30px);
+    }
+
     button {
       float: right;
+      margin-top: -15px;
+      margin-right: -15px;
     }
   }
 

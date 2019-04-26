@@ -5,6 +5,8 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "firebase": "^5.8.4",
     "node-sass": "4.11.0",
     "react": "16.5.2",
