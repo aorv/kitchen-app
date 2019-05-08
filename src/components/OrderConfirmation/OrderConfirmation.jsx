@@ -11,7 +11,6 @@ export class OrderConfirmation extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { orderOwner: '' };
     this.handleClose = this.handleClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
@@ -29,8 +28,8 @@ export class OrderConfirmation extends React.Component {
   }
 
   handleChange(e) {
-    const { addOrderOwner } = this.props;
-    addOrderOwner(e.target.value);
+    const { updateOrderOwner } = this.props;
+    updateOrderOwner(e.target.value);
   }
 
   render() {

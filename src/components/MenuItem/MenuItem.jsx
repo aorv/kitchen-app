@@ -23,9 +23,9 @@ export class MenuItem extends React.Component {
     };
 
     this.action = this.action.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.addOrderOwner = this.addOrderOwner.bind(this);
+    this.updateOrderOwner = this.updateOrderOwner.bind(this);
     this.changeBread = this.changeBread.bind(this);
     this.changeHot = this.changeHot.bind(this);
   }
@@ -69,7 +69,7 @@ export class MenuItem extends React.Component {
     );
   }
 
-  handleClick() {
+  openModal() {
     this.setState({ modalOpen: true });
   }
 
@@ -77,14 +77,15 @@ export class MenuItem extends React.Component {
     this.setState({ modalOpen: false });
   }
 
-  addOrderOwner(owner) {
+  updateOrderOwner(owner) {
     this.setState({ owner });
   }
 
   render() {
     const { name, breads, canBeHeated } = this.props;
-    const { value, total, modalOpen } = this.state;
-    const HotSwitch = <small>Hot? (+<Price value={hotPrice} />)</small>;
+    const { value, total, modalOpen, bread, isHot } = this.state;
+    const sandwich = { name, bread, total, isHot };
+    const hotSwitchLabel = <small>Hot? (+<Price value={hotPrice} />)</small>;
 
     return (
       <li className="menu-item">
@@ -120,13 +121,13 @@ export class MenuItem extends React.Component {
                   onChange={this.changeHot}
                 />
               )}
-              label={HotSwitch}
+              label={hotSwitchLabel}
             />
           )}
-          <Button size="small" variant="contained" color="primary" onClick={this.handleClick}>+ Add</Button>
+          <Button size="small" variant="contained" color="primary" onClick={this.openModal}>+ Add</Button>
           <OrderConfirmation
-            addOrderOwner={this.addOrderOwner}
-            sandwich={this.state}
+            updateOrderOwner={this.updateOrderOwner}
+            sandwich={sandwich}
             addToOrder={this.action}
             closeModal={this.closeModal}
             open={modalOpen}
