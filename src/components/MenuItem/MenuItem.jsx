@@ -1,6 +1,12 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Switch from '@material-ui/core/Switch';
 import { hotPrice } from '../../data';
-import { Price } from '..';
+import { Price, OrderConfirmation } from '..';
 
 export class MenuItem extends React.Component {
   constructor(props) {
@@ -10,10 +16,15 @@ export class MenuItem extends React.Component {
     this.state = {
       bread: 'Standard',
       isHot: !canBeHeated,
-      total: price
+      total: price,
+      modalOpen: false,
+      owner: ''
     };
 
     this.action = this.action.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.updateOrderOwner = this.updateOrderOwner.bind(this);
     this.changeBread = this.changeBread.bind(this);
     this.changeHot = this.changeHot.bind(this);
   }
@@ -46,19 +57,34 @@ export class MenuItem extends React.Component {
 
   action() {
     const { addToOrder, name } = this.props;
-    const { total, bread, isHot } = this.state;
+    const { total, bread, isHot, owner } = this.state;
 
     addToOrder(
       name,
       total,
       bread,
-      isHot
+      isHot,
+      owner
     );
+  }
+
+  openModal() {
+    this.setState({ modalOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalOpen: false });
+  }
+
+  updateOrderOwner(owner) {
+    this.setState({ owner });
   }
 
   render() {
     const { name, breads, canBeHeated } = this.props;
-    const { value, total } = this.state;
+    const { value, total, modalOpen, bread, isHot } = this.state;
+    const sandwich = { name, bread, total, isHot };
+    const hotSwitchLabel = <small>Hot? (+<Price value={hotPrice} />)</small>;
 
     return (
       <li className="menu-item">
@@ -68,23 +94,44 @@ export class MenuItem extends React.Component {
             &pound;{total.toFixed(2)}
           </span>
         </p>
-        <select value={value} onChange={this.changeBread}>
-          {breads.map((bread, i) => {
-            const { name, price } = bread;
+        <div className="row">
+          <FormControl>
+            <InputLabel shrink>Bread</InputLabel>
+            <Select
+              native
+              value={value}
+              onChange={this.changeBread}
+            >
+              {breads.map((item, i) => {
+                const { breadName, price } = item;
 
-            return (
-              <option key={i} value={i}>
-                {name} (+&pound;{price.toFixed(2)})
-              </option>
-            );
-          })}
-        </select>
-        {canBeHeated && (
-          <label onChange={this.changeHot}>
-            <input type="checkbox" /> <small>Hot? (+<Price value={hotPrice} />)</small>
-          </label>
-        )}
-        <button type="button" onClick={this.action}>+ Add</button>
+                return (
+                  <option key={i} value={i}>
+                    {breadName} (+&pound;{price.toFixed(2)})
+                  </option>
+                );
+              })}
+            </Select>
+          </FormControl>
+          {canBeHeated && (
+            <FormControlLabel
+              control={(
+                <Switch
+                  onChange={this.changeHot}
+                />
+              )}
+              label={hotSwitchLabel}
+            />
+          )}
+          <Button size="small" variant="contained" color="primary" onClick={this.openModal}>+ Add</Button>
+          <OrderConfirmation
+            updateOrderOwner={this.updateOrderOwner}
+            sandwich={sandwich}
+            addToOrder={this.action}
+            closeModal={this.closeModal}
+            open={modalOpen}
+          />
+        </div>
       </li>
     );
   }
