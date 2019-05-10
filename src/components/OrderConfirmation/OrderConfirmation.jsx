@@ -7,71 +7,61 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export class OrderConfirmation extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleClose = this.handleClose.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.addToOrder = this.addToOrder.bind(this);
-  }
-
-  handleClose() {
-    const { closeModal } = this.props;
+export const OrderConfirmation = ({
+  open,
+  sandwich: { name, bread, total, isHot },
+  closeModal,
+  addToOrder,
+  updateOrderOwner
+}) => {
+  const handleClose = () => {
     closeModal();
-  }
+  };
 
-  addToOrder() {
-    const { addToOrder } = this.props;
+  const handleConfirm = () => {
     addToOrder();
-    this.handleClose();
-  }
+    handleClose();
+  };
 
-  handleChange(e) {
-    const { updateOrderOwner } = this.props;
+  const handleChange = (e) => {
     updateOrderOwner(e.target.value);
-  }
+  };
 
-  render() {
-    const { open, sandwich } = this.props;
-    const { name, bread, total, isHot } = sandwich;
-
-    return (
-      <Dialog
-        open={open}
-        onClose={this.handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Your Sandwich</DialogTitle>
-        <DialogContent>
-          <ul className="order__items order__items--modal">
-            <OrderItem
-              name={name}
-              price={total}
-              bread={bread}
-              isHot={isHot}
-              hasButton={false}
-            />
-          </ul>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Name"
-            type="text"
-            fullWidth
-            onChange={this.handleChange}
+  return (
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="form-dialog-title"
+    >
+      <DialogTitle id="form-dialog-title">Your Sandwich</DialogTitle>
+      <DialogContent>
+        <ul className="order__items order__items--modal">
+          <OrderItem
+            name={name}
+            price={total}
+            bread={bread}
+            isHot={isHot}
+            hasButton={false}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={this.addToOrder} variant="contained" color="primary">
-            Confirm
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-}
+        </ul>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="name"
+          label="Name"
+          type="text"
+          fullWidth
+          onChange={handleChange}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary">
+          Cancel
+        </Button>
+        <Button onClick={handleConfirm} variant="contained" color="primary">
+          Confirm
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};

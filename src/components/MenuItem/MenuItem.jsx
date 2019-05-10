@@ -12,9 +12,8 @@ export class MenuItem extends React.Component {
   constructor(props) {
     super(props);
 
-    const { name, price, canBeHeated } = this.props;
+    const { price, canBeHeated } = this.props;
     this.state = {
-      name,
       bread: 'Standard',
       isHot: !canBeHeated,
       total: price,
@@ -103,12 +102,12 @@ export class MenuItem extends React.Component {
               value={value}
               onChange={this.changeBread}
             >
-              {breads.map((bread, i) => {
-                const { name, price } = bread;
+              {breads.map((item, i) => {
+                const { breadName, price } = item;
 
                 return (
                   <option key={i} value={i}>
-                    {name} (+&pound;{price.toFixed(2)})
+                    {breadName} (+&pound;{price.toFixed(2)})
                   </option>
                 );
               })}

@@ -107,8 +107,6 @@ small {
 
 .order {
   @include card();
-  position: sticky;
-  top: 10px;
   flex: 1;
 
   &__items {
