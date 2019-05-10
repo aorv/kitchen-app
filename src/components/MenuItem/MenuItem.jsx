@@ -103,11 +103,11 @@ export class MenuItem extends React.Component {
               onChange={this.changeBread}
             >
               {breads.map((item, i) => {
-                const { breadName, price } = item;
+                const { name, price } = item;
 
                 return (
                   <option key={i} value={i}>
-                    {breadName} (+&pound;{price.toFixed(2)})
+                    {name} (+&pound;{price.toFixed(2)})
                   </option>
                 );
               })}
