@@ -11,7 +11,7 @@ export const Order = ({
     <h2>Items({items.length})</h2>
     <ul className="order__items">
       {items.map((item) => {
-        const { id, name, price, bread, isHot, orderOwner } = item;
+        const { id, name, price, bread, isHot, orderOwner, ownerId } = item;
 
         return (
           <OrderItem
@@ -23,6 +23,7 @@ export const Order = ({
             isHot={isHot}
             removeFromOrder={removeFromOrder}
             orderOwner={orderOwner}
+            ownerId={ownerId}
             hasButton
           />
         );

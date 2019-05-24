@@ -1,4 +1,5 @@
 import React from 'react';
+import cookie from 'react-cookies';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Price } from '..';
@@ -11,11 +12,15 @@ export const OrderItem = ({
   bread,
   isHot,
   hasButton,
-  orderOwner
+  orderOwner,
+  ownerId
 }) => {
   const handleClick = () => {
     removeFromOrder(id);
   };
+
+  const isOrderOwner = cookie.load('ownerId') === ownerId || cookie.load('ownerId') === process.env.REACT_APP_SKELETON_KEY;
+  const showButton = isOrderOwner || hasButton;
 
   return (
     <li className="order-item">
@@ -26,10 +31,10 @@ export const OrderItem = ({
       </p>
       {isHot && <small className="hot">HOT</small>}
       {bread !== 'Standard' && <small>{bread}</small>}
-      {hasButton && (
-        <IconButton aria-label="Delete" onClick={handleClick}>
-          <DeleteIcon fontSize="small" color="primary" />
-        </IconButton>
+      {showButton && (
+      <IconButton aria-label="Delete" onClick={handleClick} disabled={!isOrderOwner}>
+        <DeleteIcon fontSize="small" color={isOrderOwner ? 'primary' : 'disabled'} />
+      </IconButton>
       )}
     </li>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import cookie from 'react-cookies';
 import { categories, breads } from './data';
 import { Header, Menu, Order, Footer } from './components';
 import firebase from './firebase';
@@ -17,6 +18,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    const uniqueOwnerId = Math.random().toString(36).substring(2, 15)
+    + Math.random().toString(36).substring(2, 15);
+
+    if (cookie.load('ownerId') === undefined) {
+      cookie.save('ownerId', uniqueOwnerId, { path: '/' });
+    }
+
     const orderRef = firebase.database().ref('order');
     orderRef.on('value', (snapshot) => {
       const items = snapshot.exists() ? snapshot.val() : {};
@@ -24,14 +32,15 @@ class App extends React.Component {
       let orderTotal = 0;
 
       Object.keys(items).forEach((item) => {
-        const { name, price, bread, isHot, orderOwner } = items[item];
+        const { name, price, bread, isHot, orderOwner, ownerId } = items[item];
         orderItems.push({
           id: item,
           name,
           price,
           bread,
           isHot,
-          orderOwner
+          orderOwner,
+          ownerId
         });
         orderTotal += price;
       });
@@ -43,13 +52,14 @@ class App extends React.Component {
     });
   }
 
-  addToOrder(name, price, bread, isHot, orderOwner) {
+  addToOrder(name, price, bread, isHot, orderOwner, ownerId) {
     firebase.database().ref('order').push({
       name,
       price,
       bread,
       isHot,
-      orderOwner
+      orderOwner,
+      ownerId
     });
   }
 
