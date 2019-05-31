@@ -11,7 +11,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       orderItems: [],
-      orderTotal: 0.0
+      orderTotal: 0.0,
+      ownerId: cookie.load('ownerId')
     };
     this.addToOrder = this.addToOrder.bind(this);
     this.removeFromOrder = this.removeFromOrder.bind(this);
