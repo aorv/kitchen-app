@@ -15,5 +15,9 @@ export const breads = [
   {
     name: 'Olive',
     price
+  },
+  {
+    name: 'Cheese & Onion',
+    price
   }
 ];
