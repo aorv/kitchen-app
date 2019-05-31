@@ -18,11 +18,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const uniqueOwnerId = Math.random().toString(36).substring(2, 15)
-    + Math.random().toString(36).substring(2, 15);
-
     if (cookie.load('ownerId') === undefined) {
-      cookie.save('ownerId', uniqueOwnerId, { path: '/' });
+      const randomInt = Math.random().toString(36).substring(2, 15)
+        + Math.random().toString(36).substring(2, 15);
+
+      cookie.save('ownerId', randomInt, { path: '/' });
+      this.setState({ ownerId: randomInt });
     }
 
     const orderRef = firebase.database().ref('order');
@@ -72,7 +73,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { orderItems, orderTotal } = this.state;
+    const { orderItems, orderTotal, ownerId } = this.state;
 
     return (
       <React.Fragment>
@@ -82,6 +83,7 @@ class App extends React.Component {
             categories={categories}
             breads={breads}
             addToOrder={this.addToOrder}
+            ownerId={ownerId}
           />
           <Order
             items={orderItems}

@@ -5,7 +5,8 @@ export const MenuCategory = ({
   title,
   items,
   breads,
-  addToOrder
+  addToOrder,
+  ownerId
 }) => (
   <React.Fragment>
     <h2>{title}</h2>
@@ -21,6 +22,7 @@ export const MenuCategory = ({
             canBeHeated={canBeHeated}
             breads={breads}
             addToOrder={addToOrder}
+            ownerId={ownerId}
           />
         );
       })}

@@ -1,5 +1,4 @@
 import React from 'react';
-import cookie from 'react-cookies';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -19,8 +18,7 @@ export class MenuItem extends React.Component {
       isHot: !canBeHeated,
       total: price,
       modalOpen: false,
-      owner: '',
-      ownerId: cookie.load('ownerId')
+      owner: ''
     };
 
     this.action = this.action.bind(this);
@@ -58,8 +56,8 @@ export class MenuItem extends React.Component {
   }
 
   action() {
-    const { addToOrder, name } = this.props;
-    const { total, bread, isHot, owner, ownerId } = this.state;
+    const { addToOrder, name, ownerId } = this.props;
+    const { total, bread, isHot, owner } = this.state;
 
     addToOrder(
       name,
