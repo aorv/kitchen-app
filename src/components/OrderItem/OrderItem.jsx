@@ -20,7 +20,6 @@ export const OrderItem = ({
   };
 
   const isOrderOwner = cookie.load('ownerId') === ownerId || cookie.load('ownerId') === process.env.REACT_APP_SKELETON_KEY;
-  const showButton = isOrderOwner || hasButton;
 
   return (
     <li className="order-item">
@@ -31,7 +30,7 @@ export const OrderItem = ({
       </p>
       {isHot && <small className="hot">HOT</small>}
       {bread !== 'Standard' && <small>{bread}</small>}
-      {showButton && (
+      {hasButton && (
       <IconButton aria-label="Delete" onClick={handleClick} disabled={!isOrderOwner}>
         <DeleteIcon fontSize="small" color={isOrderOwner ? 'primary' : 'disabled'} />
       </IconButton>

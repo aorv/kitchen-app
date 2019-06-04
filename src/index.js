@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import cookie from 'react-cookies';
+import uniqid from 'uniqid';
 import { categories, breads } from './data';
 import { Header, Menu, Order, Footer } from './components';
 import firebase from './firebase';
@@ -12,19 +13,19 @@ class App extends React.Component {
     this.state = {
       orderItems: [],
       orderTotal: 0.0,
-      ownerId: ''
+      ownerId: cookie.load('ownerId')
     };
     this.addToOrder = this.addToOrder.bind(this);
     this.removeFromOrder = this.removeFromOrder.bind(this);
   }
 
   componentDidMount() {
-    if (cookie.load('ownerId') === undefined) {
-      const randomInt = Math.random().toString(36).substring(2, 15)
-        + Math.random().toString(36).substring(2, 15);
+    let { ownerId } = this.state;
 
-      cookie.save('ownerId', randomInt, { path: '/' });
-      this.setState({ ownerId: randomInt });
+    if (ownerId === undefined) {
+      ownerId = uniqid();
+      this.setState({ ownerId });
+      cookie.save('ownerId', ownerId, { path: '/' });
     }
 
     const orderRef = firebase.database().ref('order');
