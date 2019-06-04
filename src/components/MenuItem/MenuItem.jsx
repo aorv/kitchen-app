@@ -56,7 +56,7 @@ export class MenuItem extends React.Component {
   }
 
   action() {
-    const { addToOrder, name } = this.props;
+    const { addToOrder, name, ownerId } = this.props;
     const { total, bread, isHot, owner } = this.state;
 
     addToOrder(
@@ -64,7 +64,8 @@ export class MenuItem extends React.Component {
       total,
       bread,
       isHot,
-      owner
+      owner,
+      ownerId
     );
   }
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import cookie from 'react-cookies';
+import uniqid from 'uniqid';
 import { categories, breads } from './data';
 import { Header, Menu, Order, Footer } from './components';
 import firebase from './firebase';
@@ -10,13 +12,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       orderItems: [],
-      orderTotal: 0.0
+      orderTotal: 0.0,
+      ownerId: cookie.load('ownerId')
     };
     this.addToOrder = this.addToOrder.bind(this);
     this.removeFromOrder = this.removeFromOrder.bind(this);
   }
 
   componentDidMount() {
+    let { ownerId } = this.state;
+
+    if (ownerId === undefined) {
+      ownerId = uniqid();
+      this.setState({ ownerId });
+      cookie.save('ownerId', ownerId, { path: '/' });
+    }
+
     const orderRef = firebase.database().ref('order');
     orderRef.on('value', (snapshot) => {
       const items = snapshot.exists() ? snapshot.val() : {};
@@ -24,14 +35,15 @@ class App extends React.Component {
       let orderTotal = 0;
 
       Object.keys(items).forEach((item) => {
-        const { name, price, bread, isHot, orderOwner } = items[item];
+        const { name, price, bread, isHot, orderOwner, ownerId } = items[item];
         orderItems.push({
           id: item,
           name,
           price,
           bread,
           isHot,
-          orderOwner
+          orderOwner,
+          ownerId
         });
         orderTotal += price;
       });
@@ -43,13 +55,14 @@ class App extends React.Component {
     });
   }
 
-  addToOrder(name, price, bread, isHot, orderOwner) {
+  addToOrder(name, price, bread, isHot, orderOwner, ownerId) {
     firebase.database().ref('order').push({
       name,
       price,
       bread,
       isHot,
-      orderOwner
+      orderOwner,
+      ownerId
     });
   }
 
@@ -62,7 +75,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { orderItems, orderTotal } = this.state;
+    const { orderItems, orderTotal, ownerId } = this.state;
 
     return (
       <React.Fragment>
@@ -72,6 +85,7 @@ class App extends React.Component {
             categories={categories}
             breads={breads}
             addToOrder={this.addToOrder}
+            ownerId={ownerId}
           />
           <Order
             items={orderItems}

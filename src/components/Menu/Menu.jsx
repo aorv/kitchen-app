@@ -4,7 +4,8 @@ import { MenuCategory } from '..';
 export const Menu = ({
   categories,
   breads,
-  addToOrder
+  addToOrder,
+  ownerId
 }) => (
   <div className="menu">
     <h1>Menu</h1>
@@ -18,6 +19,7 @@ export const Menu = ({
           items={items}
           breads={breads}
           addToOrder={addToOrder}
+          ownerId={ownerId}
         />
       );
     })}
