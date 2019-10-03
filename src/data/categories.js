@@ -11,7 +11,7 @@ export const categories = [
       {
         name: 'Roast ham ploughmans',
         price: prices.classics,
-        canBeHeated: true
+        canBeHeated: false
       },
       {
         name: 'Roast ham salad',
