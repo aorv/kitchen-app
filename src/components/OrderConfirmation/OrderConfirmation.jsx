@@ -27,6 +27,10 @@ export const OrderConfirmation = ({
     updateOrderOwner(e.target.value);
   };
 
+  const inputProps = {
+    maxLength: 40,
+  };
+
   return (
     <Dialog
       open={open}
@@ -51,6 +55,7 @@ export const OrderConfirmation = ({
           label="Name"
           type="text"
           fullWidth
+          inputProps={inputProps}
           onChange={handleChange}
         />
       </DialogContent>
